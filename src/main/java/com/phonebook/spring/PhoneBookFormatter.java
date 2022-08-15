@@ -73,8 +73,15 @@ public class PhoneBookFormatter {
      * @param cause of an error
      */
     public void error(Throwable cause) {
-        // TODO: add your code here
-        throw new UnsupportedOperationException("Implement it!");
+       try{
+           throw cause;
+       } catch (UnsupportedOperationException e) {
+           error("Wrong command. SHOW/ADD/REMOVE_PHONE available only!");
+       }catch (IllegalArgumentException e) {
+           error("No such phone number in phone book.");
+       } catch (Throwable e) {
+           error("another mistake");
+       } 
     }
 
     /*************************

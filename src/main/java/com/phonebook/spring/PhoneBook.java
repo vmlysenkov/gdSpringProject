@@ -13,7 +13,7 @@ import java.util.Set;
 @Service
 public class PhoneBook {
 
-    // @Autowired
+     @Autowired
     private InMemoryRepository repository;
 
     public PhoneBook() {
@@ -49,4 +49,11 @@ public class PhoneBook {
     /**
      * TODO: please add required methods here
      */
+    public void addPhone(String name, String phone) {
+       repository.addPhone(name, phone);
+    }
+
+    public void removePhone(String phone) {
+        repository.removePhone(phone);
+    }
 }

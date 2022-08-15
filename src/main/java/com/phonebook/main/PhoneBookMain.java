@@ -22,19 +22,36 @@ public class PhoneBookMain {
 
         PhoneBook phoneBook = context.getBean("phoneBook", PhoneBook.class);
         PhoneBookFormatter renderer = (PhoneBookFormatter) context.getBean("phoneBookFormatter");
-        renderer.show(phoneBook.findAll());
+
+
         renderer.info("type 'exit' to quit.");
-        
+
         while (sc.hasNext()) {
             String line = sc.nextLine();
-            
+
             if (line.equals("exit")) {
                 renderer.info("Have a good day...");
                 break;
             }
+
+
             try {
                 //TODO
-                throw new UnsupportedOperationException("Implement it!");
+                if (line.equals("SHOW")) {
+                    renderer.show(phoneBook.findAll());
+                    continue;
+                }
+                if (line.contains("ADD")) {
+                    String[] strLine = line.split(" ");
+                    phoneBook.addPhone(strLine[1], strLine[2]);
+                    continue;
+                }
+                if (line.contains("REMOVE_PHONE")) {
+                    String[] strLine = line.split(" ");
+                    phoneBook.removePhone(strLine[1]);
+                    continue;
+                }
+                throw new UnsupportedOperationException();
             } catch (Exception e) {
                 renderer.error(e);
             }
